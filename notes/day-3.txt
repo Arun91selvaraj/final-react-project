@@ -1,0 +1,65 @@
+Transpilation: (transformation + compilation)
+	Converting either higher version of JS or TS code into vanilla JS
+
+TS => JS
+tool: typescript compiler (tsc)
+
+NPM: Node Package Manager
+
+a. global installation
+>npm install <package-name> --global
+global install path: C:\Users\<user-name>\AppData\Roaming\npm
+
+b. local installation
+>npm install <package-name>
+application-dir:
+	node_modules
+		.bin (folder)
+			executables...
+		
+		typescript
+			.....
+
+	package.json
+
+create package.json
+>npm init
+
+typescript compiler configuration:
+file name: tsconfig.json
+placement: at the root of the directory
+command to create: >.\node_modules\.bin\tsc --init
+
+module: an API to expose members of one JS/TS file to othe files
+module format:
+a. ES6 module format
+export: export member
+import: import { member } from './...'
+
+b. common js format:
+export: module.exports = { prop-name1: member-name1, prop-name2: member-name2,...}
+import: const { prop1-name, prop2-name} = require('./....')
+
+c. AMD (asynchronous module definition) format
+define(['./employee'], function(){
+	const emplyoees:Employee[] = []
+	exports employees
+})
+
+d. UMD (Universal module definition) format
+
+require(....)
+
+module loader:
+which understnads module format and accordingly resolves dependencies amongst the modules and load them properly in runtime
+
+common js module loader is part of node js runtime by default, which understands common js module format
+
+browser DOES NOT HAVE any module loader, supply a  module loader
+
+requirejs: it only understands AMD format
+systemjs
+
+
+
+
