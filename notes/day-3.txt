@@ -61,5 +61,73 @@ requirejs: it only understands AMD format
 systemjs
 
 
+React JS:
+a. it is javascript library
+b. helps you create component-based web application
+c. helps you create a SPA 
+d. provides help about fetching data from UI or passing data to UI by binding
+e. provides help about passing data between components via "props"
+f. it uses virtual DOM concept
+
+tool to create React JS application: create-react-app
+installation command: > npm i create-react-app --global
+
+props and state in React JS:
+props: passing data from paret to nested component
+state: maintaining state of data in a component
+*: DO NOT MUTATE THE STATE DIRECTLY, MUTATE THE STATE IMMUTABLY
+functional components can't maintain state of data(*)
+
+function Some(){
+	let x = 2
+	return <div>{x}</div>
+}
+const designV1 = Some()
+const designV2 = Some()
+const designV3 = Some()
+
+<Some /> //Some()
+
+class Some extends Component{
+	constructor(){
+		super()
+		this.state={
+			x:0
+		}
+	}
+	increaseX=()=>{
+		//++this.state.x
+		this.setState(
+			(oldState)=>{
+				return {
+					x: oldState.x+1
+				}
+			}
+		)
+		//this.setState({x:10})
+	}
+	render(){
+		return <div>{this.state.x}</div>
+	}
+}
+
+<Some /> 
+//const someComp = new Some()
+//someComp.render() => 0
+
+//someComp.render() => 1
+//someComp.render() => 2
+
+
+Post
+	state=> postContent, comments:
+	=> Content
+	=> CommentList
+
+
+
+
+
+
 
 
