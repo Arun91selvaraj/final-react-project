@@ -1,19 +1,8 @@
-import { Container } from "./ioc/container";
-import { Manager } from "./manager/manager";
-import { Employee } from "./models/employee";
+import { render } from "react-dom";
+import App from "./components/app/App";
 
-const containerObj = Container.instantiate()
-const manager: Manager<Employee> = containerObj.create()
-
-manager.add(new Employee(3, 'anil', 1500, 2000, 3000))
-manager.add(new Employee(1, 'joydip', 1000, 2000, 3000))
-manager.add(new Employee(2, 'sunil', 1200, 2000, 3000))
-
-manager.getAll().forEach(
-    e => {
-        e.calculateSalary()
-        console.log(e.name, e.totalSalary)
-    }
+const appDesign = App()
+render(
+    appDesign,
+    document.getElementById('root')
 )
-
-console.log('end of code')
