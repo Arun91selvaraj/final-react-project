@@ -1,0 +1,5 @@
+1. how to render a list of elements in react?
+2. props - pass data from parent to nested component
+3. reference to HTML elements from React component
+4. handling forms
+5. making HTTP requests

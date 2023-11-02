@@ -4,3 +4,12 @@ https://medium.com/@happymishra66/execution-context-in-javascript-319dd72e8e2c
 
 https://developer.mozilla.org/en-US/docs/Web/JavaScript
 https://javascript.info/
+
+React Tutorial:
+https://www.youtube.com/playlist?list=PLC3y8-rFHvwgg3vaYJgHGnModB54rxOk3
+React Hooks:
+https://www.youtube.com/playlist?list=PLC3y8-rFHvwisvxhZ135pogtX7_Oe3Q3A
+React Redux:
+https://www.youtube.com/playlist?list=PLC3y8-rFHvwheJHvseC3I0HuYI2f46oAK
+Udemy:
+https://www.udemy.com/course/react-the-complete-guide-incl-redux/
