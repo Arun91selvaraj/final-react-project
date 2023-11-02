@@ -195,6 +195,21 @@ props:
 	React, in order to pass data from parent to nested component, allows to attach random (or predefined) properties/attributes with the component. 
 	React JS creates a read-only object (known as property object or props) with the attributes/properties and their values, and then passes that object to functional component as an argument
 	React JS creates a read-only object (known as property object or props) with the attributes/properties and their values, and then assigns it to the 'props' property of the class component or passes it to the constructor of the class
+
+
+Lifecycle of class component object:
+mounting phase:
+1. constructor gets called
+2. render() function gets called => creates ReactElement (VDOM)
+3. the VDOM is translated into ADOM  (RE => HTML) and the design is displayed in the browser
+4. 'mount' event of the class component gets fired => handle the event by writing "componentDidMount()" method in the class component
+
+updation phase:
+either state of the component is updated or the component received fresh property object from parent component
+
+'render' method gets called
+'update' gets fired => handle this event by writing componentDidUpdate() method
+
 	
 
 
