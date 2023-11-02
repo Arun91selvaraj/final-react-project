@@ -10,7 +10,7 @@ const ItemList = (props: ItemListPropType) => {
     const liElements: JSX.Element[] =
         listOfNames.map(
             (name, i) => {
-                return <li>
+                return <li key={i}>
                     <div>
                         <input
                             type="text"

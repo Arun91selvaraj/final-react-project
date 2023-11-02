@@ -4,3 +4,205 @@
 4. handling forms
 5. making HTTP requests
 
+components: components must return a react element or list of react elements (map)
+a. functional component or presentational component
+	export default function Sample(){
+		return <div></div>
+	}
+	<Sample /> => Sample()
+b. class component
+JS:
+export default class Sample extends Component{
+	render(){
+		return <div></div>
+	}
+}
+TS: (P=> properties object type and S => State object type)
+export default class Sample extends Component<P,S>{
+	render(){
+		return <div></div>
+	}
+}
+<Sample /> => new Sample().render()
+
+state:
+	it is about maintaing a component's state (state of data). IT IS NEVER SHARED ACROSS COMPONENTS. If you want to share the state data of a component with another component, pas that state data copy via props to that another component.
+	state should never be directly mutated.
+
+class component's state:
+JS:
+export default class Sample extends Component{
+	state={	
+		counterValue:0,
+		name:'',
+		status:true,
+		person:{
+			name:'anil',
+			id:1,
+			salary:1000
+		}
+	}
+	updateNameHandler=(newName)=>{
+		this.setState({ name:newName})		
+	}
+	render(){
+		return (
+			<div>
+				<input 
+					type='text' 
+					value={this.state.name} 
+					onChange={(e)=>updateNameHandler(e.target.value)	}
+			</div>
+		)
+	}
+}
+
+TS:
+interface Person{
+		name:string,
+		id:number,
+		salary:number
+}
+type SampleStateType={
+	counterValue:number,
+	name:string,
+	status:boolean,
+	person:Person
+}
+export default class Sample extends Component<{},SampleStateType>{
+	state:Readonly<SampleStateType>={	
+		counterValue:0,
+		name:'',
+		status:true,
+		person:{
+			name:'anil',
+			id:1,
+			salary:1000
+		}
+	}
+	updateNameHandler=(newName:string)=>{
+		this.setState(
+			(oldState)=>{
+				return {
+					...oldState,
+					name:newName
+				}
+			}
+		)		
+	}
+	render(){
+		return (
+			<div>
+				<input 
+					type='text' 
+					value={this.state.name} 
+					onChange={(e)=>updateNameHandler(e.target.value)	}
+			</div>
+		)
+	}
+}
+
+functional component's state:
+
+TS:
+const SampleFn = () => {
+    const [counterValue, setCounterValue] = useState<number>(0)
+    const [name, setName] = useState<string>('enter name here')
+    const [status, setStatus] = useState<boolean>(false)
+    const [person, setPerson] = useState<Person>({ name: '', id: 0, salary: 0 })
+
+    const counterValueHandler = () => {
+        setCounterValue(
+            (oldValue) => oldValue + 1
+        )
+    }
+    const nameHandler = () => {
+        setName('anil')
+    }
+    const statusHandler = () => {
+        setStatus(
+            (oldStatus) => !oldStatus
+        )
+    }
+    const personHandler = () => {
+        setPerson(
+            (oldPerson) => {
+                return {
+                    ...oldPerson,
+                    name: 'sunil',
+                    salary: 10000
+                }
+            }
+        )
+    }
+    return (
+        <div>
+            <button>Incrase Counter</button>
+        </div>
+    )
+}
+
+JS:
+const SampleFn = () => {
+    const [counterValue, setCounterValue] = useState(0)
+    const [name, setName] = useState('enter name here')
+    const [status, setStatus] = useState(false)
+    const [person, setPerson] = useState({ name: '', id: 0, salary: 0 })
+
+    const counterValueHandler = () => {
+        setCounterValue(
+            (oldValue) => oldValue + 1
+        )
+    }
+    const nameHandler = () => {
+        setName('anil')
+    }
+    const statusHandler = () => {
+        setStatus(
+            (oldStatus) => !oldStatus
+        )
+    }
+    const personHandler = () => {
+        setPerson(
+            (oldPerson) => {
+                return {
+                    ...oldPerson,
+                    name: 'sunil',
+                    id: 1,
+                    salary: 10000
+                }
+            }
+        )
+    }
+    return (
+        <div>
+            <button>Incrase Counter</button>
+        </div>
+    )
+}
+
+class state vs function state:
+a. class state property must be assigned to an object, whereas, functional state can be of any type
+b. in class, only one state object will be present, whereas, in functional state, many state can be present
+c. in class, state is updated via setState() method of Component class, whereas, in functional state, state is updated via a method reference, quite similar to setState()
+d. both cases, state should not be mutated DIRECTLY, should be updated immutably
+e. both the cases, state updation is asynchornous. in case of class, after state updation, the render() method gets called. in case of function, the function is called again after state updation
+
+f. in classs, old and new state (that you pass to setState() method) are merged
+	in function, old state is replaced by the new state (that you pass to state update method given by useState() hook)
+
+props:
+	React, in order to pass data from parent to nested component, allows to attach random (or predefined) properties/attributes with the component. 
+	React JS creates a read-only object (known as property object or props) with the attributes/properties and their values, and then passes that object to functional component as an argument
+	React JS creates a read-only object (known as property object or props) with the attributes/properties and their values, and then assigns it to the 'props' property of the class component or passes it to the constructor of the class
+	
+
+
+
+
+
+
+
+
+
+

@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import './App.css';
 import ItemList from './ItemList';
+import Sample from './Sample';
+import PropsComp from './PropsCom';
+import PropsCompCls from './PropsCompCls';
 
 
 function App() {
@@ -26,6 +29,12 @@ function App() {
         listOfNames={names}
         nameChangeHandler={updateName}
       />
+      <br />
+      <Sample />
+      <br /><br />
+      <PropsComp sampleAttr='verizon' sampleFnAttr={() => console.log('ignoring event object')} />
+      <br /><br />
+      <PropsCompCls sampleAttr='verizon' sampleFnAttr={() => console.log('ignoring event object')} />
     </div>
   );
 }
