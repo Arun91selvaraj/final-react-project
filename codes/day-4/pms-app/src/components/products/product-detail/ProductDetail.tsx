@@ -1,5 +1,6 @@
 import './ProductDetail.css'
 import { Product } from '../../../models/product'
+import { Link } from 'react-router-dom'
 
 type ProductDetailPropType = {
     product: Product
@@ -9,7 +10,9 @@ const ProductDetail = (props: Readonly<ProductDetailPropType>) => {
     return (
         <tr>
             <td>
-                <img src={product.imageUrl} alt="NA" title={product.productName} />
+                <Link to={`/products/${product.productId}`}>
+                    <img src={product.imageUrl} alt="NA" title={product.productName} />
+                </Link>
             </td>
             <td>{product.productName}</td>
             <td>{product.price}</td>

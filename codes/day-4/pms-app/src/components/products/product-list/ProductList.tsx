@@ -1,9 +1,9 @@
-import { Product } from '../../../models/product'
 import ProductDetail from '../product-detail/ProductDetail'
 import { useDispatch, useSelector } from "react-redux";
-import { ProductsStateType, failureActionCreator, initiateRequestActionCreator, successActionCreator } from '../../../redux';
 import { getProducts } from '../../../services/productservice';
 import { useEffect } from 'react';
+import { ProductsStateType } from '../../../redux/reduxtypes';
+import { failureActionCreator, initiateRequestActionCreator, successActionCreator } from '../../../redux/actions';
 
 const ProductList = () => {
 

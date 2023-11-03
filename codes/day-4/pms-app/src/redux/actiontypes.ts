@@ -1,0 +1,5 @@
+export const productsActionTypes = {
+    INITIATE_REQUEST: 'INITIATE_REQUEST',
+    FETCH_SUCCESS: 'FETCH_SUCCESS',
+    FETCH_FAILURE: 'FETCH_FAILURE'
+}

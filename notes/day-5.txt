@@ -100,6 +100,20 @@ ex: redux-logger
 createStore() => create store object
 
 
+Route-1
+home => Home
+Route-2 (Redirection route)
+base url => redirect to /home
+
+R-3:
+products => ProductList 
+R-4:
+products/add => AddProduct
+
+R-5:
+* => PageNotFound
+
+
 
 
 
