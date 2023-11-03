@@ -75,6 +75,50 @@ Effect: the callback will be called ONLY one time, and that is the very first ti
 the clean-up callback will be called ONLY one time,when the component is unmounted
 
 
+state management via Redux:
+creating a central repository of all the states of an application
+synchronous and predictable manner of state mamagement
+
+terminologies:
+store: an object to save states
+reducer:a function dedicated to state (part of the store)
+reducer map: an object containing references to every reducer in the store
+state: the state
+action: an object. everyone, who subscribes to a state of the store, must send an action object to update state. it should contain at least one property, named, 'type'
+dispatch: a function provided by the store so that anyone can send an action object to update the state
+
+install:
+>npm i redux
+
+with react:
+>npm i redux
+>npm i react-redux => connects the react application with redux
+
+importable members of redux:
+applyMiddleware() => apply different middlewares on redux store
+ex: redux-logger
+createStore() => create store object
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
