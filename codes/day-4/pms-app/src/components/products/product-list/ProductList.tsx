@@ -3,6 +3,7 @@ import ProductDetail from '../product-detail/ProductDetail'
 import { useDispatch, useSelector } from "react-redux";
 import { ProductsStateType, failureActionCreator, initiateRequestActionCreator, successActionCreator } from '../../../redux';
 import { getProducts } from '../../../services/productservice';
+import { useEffect } from 'react';
 
 const ProductList = () => {
 
@@ -36,39 +37,48 @@ const ProductList = () => {
             )
     }
 
+    useEffect(
+        () => {
+            getData()
+        },
+        []
+    )
+
     let plDesign: JSX.Element | JSX.Element[];
     if (!isRequestComplete)
         plDesign = <span>Loading...please wait</span>
-    return plDesign
-    const design = (
-        //<Fragment>
-        <>
-            <h2 className='text-muted'>List Of Products</h2>
-            <br />
-            <table className='table table-hover'>
-                <thead>
-                    <tr>
-                        <th scope='column'>Image</th>
-                        <th scope='column'>Name</th>
-                        <th scope='column'>Price</th>
-                        <th scope='column'>Rating</th>
-                        <th scope='column'>Delete</th>
-                    </tr>
-                </thead>
-                <tbody className='table-primary'>
-                    {
-                        productRecords
-                            .map(
+    else if (errorMessage !== '')
+        plDesign = <span>{errorMessage}</span>
+    else if (!products || products.length === 0)
+        plDesign = <span>No records</span>
+    else {
+        plDesign = (
+            <>
+                <h2 className='text-muted'>List Of Products</h2>
+                <br />
+                <table className='table table-hover'>
+                    <thead>
+                        <tr>
+                            <th scope='column'>Image</th>
+                            <th scope='column'>Name</th>
+                            <th scope='column'>Price</th>
+                            <th scope='column'>Rating</th>
+                            <th scope='column'>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody className='table-primary'>
+                        {
+                            products?.map(
                                 (p) => <ProductDetail product={p} key={p.productId} />
                             )
-                    }
-                </tbody>
-            </table>
-        </>
-        //</Fragment>
-    )
+                        }
+                    </tbody>
+                </table>
+            </>
+        )
+    }
 
-    return design
+    return plDesign
 }
 
 export default ProductList
