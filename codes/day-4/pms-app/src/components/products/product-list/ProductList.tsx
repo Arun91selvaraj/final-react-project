@@ -1,11 +1,45 @@
-import React, { Fragment, useState } from 'react'
 import { Product } from '../../../models/product'
-import { products } from '../../../data/products'
 import ProductDetail from '../product-detail/ProductDetail'
+import { useDispatch, useSelector } from "react-redux";
+import { ProductsStateType, failureActionCreator, initiateRequestActionCreator, successActionCreator } from '../../../redux';
+import { getProducts } from '../../../services/productservice';
 
 const ProductList = () => {
-    const [productRecords, setProductRecords] = useState<Product[]>(products)
 
+    const dispatch = useDispatch()
+    const { isRequestComplete, errorMessage, products } = useSelector(
+        (storeState: ProductsStateType) => storeState
+    )
+
+    const getData = () => {
+
+        const initRequestAction = initiateRequestActionCreator()
+        dispatch(initRequestAction)
+
+        getProducts()
+            .then(
+                (resp) => {
+                    const apiResponse = resp.data
+                    if (apiResponse.data !== null) {
+                        const successAction = successActionCreator(apiResponse.data)
+                        dispatch(successAction)
+                    } else {
+                        const failureAction = failureActionCreator(
+                            apiResponse.message)
+                        dispatch(failureAction)
+                    }
+                },
+                (err: Error) => {
+                    const failureAction = failureActionCreator(err.message)
+                    dispatch(failureAction)
+                }
+            )
+    }
+
+    let plDesign: JSX.Element | JSX.Element[];
+    if (!isRequestComplete)
+        plDesign = <span>Loading...please wait</span>
+    return plDesign
     const design = (
         //<Fragment>
         <>

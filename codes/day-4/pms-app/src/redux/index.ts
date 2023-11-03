@@ -77,7 +77,7 @@ export const productsReducer = (
 }
 
 const loggerMiddleware = createLogger()
-export const store = legacy_createStore(
+export const appStore = legacy_createStore(
     productsReducer,
     applyMiddleware(loggerMiddleware)
 )
