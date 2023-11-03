@@ -1,6 +1,6 @@
 PMS back end description:
 
-url											http method		request data			response
+url											http method	request data			response
 ---------------------------------------------------------------------------------------------
 get all products
 http://localhost:3003/products			GET				NA					{ "message":"", "data": [] }
@@ -10,13 +10,13 @@ http://localhost:3003/products/id		GET				id					{ "message":"", "data": {} }
 http://localhost:3003/products/id		GET				id					{ "message":"", "data": null }
 
 delete a product
-http://localhost:3003/products/id		DELETE			id					{ "message":"", "data": {} }
+http://localhost:3003/products/id		DELETE			id					{ "message":"", "data": [] }
 http://localhost:3003/products/id		DELETE			id					{ "message":"", "data": null }
 
 add a product
-http://localhost:3003/products			POST			product			{ "message":"", "data": [] }
-http://localhost:3003/products			POST			product			{ "message":"", "data": null }
+http://localhost:3003/products			POST			product				{ "message":"", "data": [] }
+http://localhost:3003/products			POST			product				{ "message":"", "data": null }
 
 update a product
-http://localhost:3003/products/id		PUT				id, product		{ "message":"", "data": {} }
+http://localhost:3003/products/id		PUT				id, product		{ "message":"", "data": [] }
 http://localhost:3003/products/id		PUT				id, product		{ "message":"", "data": null }
