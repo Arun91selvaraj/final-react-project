@@ -1,0 +1,81 @@
+lifecycle events and hooks:
+class component=> 
+	componentDidMount():void{}
+	componentDidUpdate(prevProps:Readonly<?>, prevState:ReadOnly<?>, snapshot?:object){}
+	componentWillUnmount():void{}
+
+React Hooks: APIs (functions)
+	useState()
+	useEffect()
+	useReducer()
+	useRef()
+	useContext()
+	.....
+
+type SamplePropType={
+	postId:number
+}
+function Sample(props:ReadOnly<SamplePropType>){
+
+	const [post, setPost]= useState<Post|null>(null)
+	const [errorMessage, setErrorMessage]= useState<string>('')
+	
+	useEffect(
+		()=>{
+			fetchPost(props.postId)
+			.then(
+				(resp)=>setPost(res.data),
+				(err)=>setErrorMessage(err.message))
+
+			return ()=>{ //clean-up code}
+		},
+		[props.postId]
+	)
+
+	return <div></div>
+}
+
+
+<Sample postId={1}/>
+
+1. no dependency array as the 2nd argument to useEffect
+useEffect(
+	()=>{
+		//code
+		return ()=>{ }
+	}
+)
+Effect: the callback will be called every time you the component function is called (like componentDidUpdate() every time)
+the clean-up callback will be called also every time, but in the next round
+
+2. dependency array with dependency factors as the 2nd argument to useEffect
+useEffect(
+	()=>{
+		//code
+		return ()=>{}
+	},[value1, value2,....]
+)
+useEffect(
+	()=>{
+		//code
+		return ()=>{}
+	}, [value3]
+)
+Effect: the callback will be called only when one of the dependency factors change (like componentDidUpdate() conditionally)
+the clean-up callback will be called conditionally, but in the next round
+
+3. blank dependency array as the 2nd argument to useEffect
+useEffect(
+	()=>{
+		//code
+		return ()=>{}
+	}, []
+)
+Effect: the callback will be called ONLY one time, and that is the very first time (like componentDidMount()) it is mounted
+the clean-up callback will be called ONLY one time,when the component is unmounted
+
+
+
+
+
+
